@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Management Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="database.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">👨‍👩‍👧‍👦 Family Dashboard</h1>
+      <p class="dashboard-subtitle">Manage your family members with ease</p>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-section">
+      <h2 style="color: #34495e; margin-bottom: 20px; text-align: center;">🔍 Search Family</h2>
+      <form action="ViewFamilyServlet" method="get">
+        <div class="form-group">
+          <label for="jan_aadhar">Jan Aadhar Number:</label>
+          <input type="text" id="jan_aadhar" name="jan_aadhar" placeholder="Enter Jan Aadhar Number" required />
+        </div>
+        <button type="submit">
+          <span>Search Family</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" id="totalMembers">--</div>
+        <div class="stat-label">Total Members</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="totalFamilies">--</div>
+        <div class="stat-label">Total Families</div>
+      </div>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+      <a href="addMember.html" class="nav-link">
+        ➕ Add New Member
+      </a>
+      <a href="#" class="nav-link" onclick="showAllFamilies()">
+        👥 View All Families
+      </a>
+      <a href="reports.html" class="nav-link">
+        📊 Reports
+      </a>
+      <a href="#" class="nav-link" onclick="exportData()">
+        💾 Backup Data
+      </a>
+    </div>
+
+    <!-- Import Data Section -->
+    <div style="text-align: center; margin: 20px 0;">
+      <input type="file" id="importFile" accept=".json" onchange="importData(event)" style="display: none;">
+      <button onclick="document.getElementById('importFile').click()" style="background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);">
+        📥 Restore Data
+      </button>
+    </div>
+
+    <!-- Results Section (Hidden by default) -->
+    <div id="resultsSection" style="display: none; margin-top: 30px;">
+      <h3 style="color: #34495e; margin-bottom: 20px;">Search Results:</h3>
+      <div id="searchResults"></div>
+    </div>
+  </div>
+</body>
+</html>
